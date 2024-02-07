@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, Email, IntegerField
+from wtforms import StringField, SubmitField, PasswordField, IntegerField, TextAreaField
+from wtforms.validators import DataRequired, Email
 
 
 class InscriptionForm(FlaskForm):
@@ -16,5 +16,9 @@ class AjoutFilmForm(FlaskForm):
     annee_sortie = IntegerField('Année de Sortie')
     genre = StringField('Genre')
     submit = SubmitField('Ajouter le Film')
+
+class CritiqueForm(FlaskForm):
+    contenu = TextAreaField('Critique', validators=[DataRequired()])
+    submit = SubmitField('Publier')
 
 

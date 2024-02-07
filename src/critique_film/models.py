@@ -16,8 +16,7 @@ class Film(db.Model):
     realisateur = db.Column(db.String(100))
     annee_sortie = db.Column(db.Integer)
     genre = db.Column(db.String(100))
-    genres = db.Column(db.String(100))
-    critiques = db.relationship('Critique', backref='film', lazy='dynamic')
+    # critiques = db.relationship('Critique', backref='film', lazy='dynamic')
 class Critique(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     contenu = db.Column(db.Text, nullable=False)
@@ -25,4 +24,4 @@ class Critique(db.Model):
     date_posts = db.Column(db.DateTime, default=datetime.utcnow)
     id_utilisateur = db.Column(db.Integer, db.ForeignKey('utilisateur.id'))
     id_film = db.Column(db.Integer, db.ForeignKey('film.id'))
-    # film = db.relationship('Film', backref='critiques', lazy=True)
+    film = db.relationship('Film', backref='critique', lazy=True)
