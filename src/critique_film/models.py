@@ -7,7 +7,6 @@ class Utilisateur(db.Model):
     nom = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
     mot_de_passe_hash = db.Column(db.String(120), nullable=False)
-    mot_de_passe = db.Column(db.String(120), nullable=False)
     critiques= db.relationship('Critique', backref='utilisateur', lazy='dynamic')
 
 
@@ -25,3 +24,5 @@ class Critique(db.Model):
     date_post = db.Column(db.DateTime, default=datetime.utcnow)
     date_posts = db.Column(db.DateTime, default=datetime.utcnow)
     id_utilisateur = db.Column(db.Integer, db.ForeignKey('utilisateur.id'))
+    id_film = db.Column(db.Integer, db.ForeignKey('film.id'))
+    film = db.relationship('Film', backref='critiques', lazy=True)
