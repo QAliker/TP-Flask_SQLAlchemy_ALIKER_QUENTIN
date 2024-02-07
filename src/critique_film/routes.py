@@ -19,7 +19,7 @@ def inscription():
     if form.validate_on_submit():
         # enregistrer le formulaire
         # générer le hash du mot de passe
-        hashed_password = generate_password_hash(form.mot_de_passe.data)
+        hashed_password = generate_password_hash(form.mot_de_passe.data, salt_length=8)
         # enregistrer l'utilisateur
         new_user = Utilisateur(
             nom=form.nom.data,
@@ -35,3 +35,7 @@ def inscription():
         db.session.commit()
         return render_template('index.html')
     return render_template('inscription.html', form=form)
+
+@main.route('/ajouter-film', methods=['GET', 'POST'])
+def ajouter_film():
+    
