@@ -86,6 +86,7 @@ def deleteReservation(id):
         return jsonify({'success': False, "message": "Reservation avec l'id donné n'existe pas."})
 
 @main.route('/api/chambres/disponibles', methods=['GET'])
+# create a client
 def getAvailableRooms():
     data = request.json
     date_depart = data.get('date_depart')
