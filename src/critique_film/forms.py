@@ -22,3 +22,4 @@ class CritiqueForm(FlaskForm):
     submit = SubmitField('Publier')
 
 
+

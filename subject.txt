@@ -1,0 +1,40 @@
+# Exercice création de modèles SQLAlchemy
+
+### Contexte
+
+Vous travaillez sur le backend d'une application de bibliothèque en ligne. Cette application doit gérer des livres, des auteurs, et des emprunts de livres par les utilisateurs.
+
+### Modèles à Créer
+
+1. **Auteur**
+    - `id` : Clé primaire, Integer.
+    - `nom` : Nom de l'auteur, String.
+    - `date_naissance` : Date de naissance, DateTime.
+    - `nationalite` : Nationalité, String.
+    - Relations : Un auteur peut écrire plusieurs livres (relation un-à-plusieurs avec Livre).
+
+2. **Livre**
+    - `id` : Clé primaire, Integer.
+    - `titre` : Titre du livre, String.
+    - `date_publication` : Date de publication, DateTime.
+    - `genre` : Genre du livre, String.
+    - `id_auteur` : Clé étrangère liée à Auteur.
+    - Relations : Un livre appartient à un auteur. Un livre peut être emprunté plusieurs fois, par différents utilisateurs
+
+3. **Utilisateur**
+    - `id` : Clé primaire, Integer.
+    - `nom` : Nom de l'utilisateur, String.
+    - `email` : Email de l'utilisateur, String, unique.
+    - Relations : Un utilisateur peut emprunter plusieurs livres
+
+4. **Emprunt**
+    - `id` : Clé primaire, Integer.
+    - `id_utilisateur` : Clé étrangère liée à Utilisateur.
+    - `id_livre` : Clé étrangère liée à Livre.
+    - `date_emprunt` : Date de l'emprunt, DateTime.
+    - `date_retour` : Date du retour, DateTime, peut être `null` si le livre n'est pas encore retourné.
+    
+
+### Conseil
+
+- Pour les dates, vous pouvez utiliser le type `db.DateTime` et `datetime.datetime.now()` de Python pour les valeurs par défaut.
